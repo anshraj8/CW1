@@ -1,0 +1,182 @@
+:root {
+  --border-radius: 15px;
+  --text-color: hsl(0, 0%, 99%);
+  --bg-color-primary: hsl(0, 0%, 25%);
+
+  background-color: hsl(0, 0%, 15%);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+}
+text {
+  fill: var(--text-color);
+}
+
+h1 {
+  margin: 0 10px;
+}
+h2 {
+  margin: 0;
+}
+section {
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color-primary);
+
+  margin: 10px;
+}
+#instructions {
+  background-color: unset;
+}
+
+/* Main layout elements */
+#scatter-plots, #line-charts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#map {
+  min-height: 600px;
+  border-radius: var(--border-radius);
+}
+
+/* On medium+ screens charts enter a 2x2 layout */
+@media (min-width: 1100px) {
+  #scatter-plots {
+    display: grid;
+    grid-auto-flow: column;
+  }
+
+  #line-charts {
+    display: grid;
+    grid-template: auto 1fr 1fr / 1fr 1fr;
+  }
+
+  #toolbar {
+    grid-column: 1/3;
+  }
+}
+
+/* On wide+ screens, fullscreen dashboard with 2 columns */
+@media (min-width: 1800px) {
+  main {
+    display: grid;
+    grid-template: auto 1fr 1fr / 1fr 1fr;
+    max-height: 100vh;
+  }
+
+  h1 {
+    grid-column: 1/3;
+  }
+
+  #map {
+    place-self: center stretch;
+
+    grid-column: 1;
+    grid-row: 2/3;
+  }
+
+  #line-charts {
+    grid-column: 2;
+    grid-row: 2/3;
+  }
+
+  #scatter-plots {
+    grid-auto-flow: column;
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
+/* Map control elements */
+.legend {
+  line-height: 18px;
+  color: #555;
+  background-color: rgba(255,255,255,0.5);
+  padding: 10px;
+  border-radius: 10px;
+}
+.legend i {
+  min-width: 18px;
+  min-height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.map-info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white3;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  color: hsl(0, 0%, 10%);
+}
+.map-info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+/* Scatter plot styling */
+.scatter-box {
+  opacity: 0;
+  fill: none;
+  stroke: var(--text-color);
+  stroke-width: 1.5;
+}
+
+/* Line chart styling */
+#toolbar {
+  padding: 10px;
+}
+
+.line-chart-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  padding-top: 5px;
+}
+
+.line-chart-container select {
+  margin-left: 10px;
+  justify-self: start;
+}
+
+.line-highlight {
+  fill: none;
+  stroke: white;
+  opacity: 0;
+}
+
+.line-hint {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 0.85;
+}
+
+.line-chart-select {
+  fill: hsl(0, 0%, 15%);
+  fill-opacity: 0.5;
+}
+.line-line {
+  fill: none;
+  stroke-width: 1.5;
+}
+.line-new_cases_smoothed {
+  stroke: yellow;
+}
+.line-new_deaths_smoothed {
+  stroke: red;
+}
+.line-people_vaccinated {
+  stroke: cyan;
+}
+.line-people_fully_vaccinated {
+  stroke: lime;
+}
