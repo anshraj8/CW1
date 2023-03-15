@@ -8,7 +8,7 @@ const innerWidth = width - margin.left - margin.right;
 const innerHeight = height - margin.top - margin.bottom;
 
 export class ClusterChart {
-  // Will store coordinates when brushing started
+  // Stores coordinates when brushing started
   mouseDown;
 
   constructor(elementId, x, y) {
@@ -26,7 +26,7 @@ export class ClusterChart {
     this.chart = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Scales are reused across event listeners
+    // Reusing the scales around the event listners
     this.xScale = d3.scaleLinear()
       .range([0, innerWidth]);
 
@@ -55,12 +55,12 @@ export class ClusterChart {
         .attr('transform', `translate(20,${margin.top + innerHeight / 2}) rotate(-90)`);
   }
 
-  // Performs k-means clustering and updates the chart
+  // This performs k-means clustering and updates the charts
   async cluster(numClusters) {
     const data = await covidData();
 
     const vectors = Object.keys(data).map(k => {
-      // Ignore special entries, they're not comparable
+      // Ignoring some special entries, they're not comparable
       if (k.startsWith('OWID')) return null;
 
       // Taking copy to order data from newest to oldest non-destructively
@@ -75,7 +75,7 @@ export class ClusterChart {
       })
       const latestStats = allStats[latestIndex];
 
-      // Some countries may not have information available
+      // Some countries who might have data available have information available
       if (!latestStats) return null;
 
       return {

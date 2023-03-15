@@ -1,14 +1,10 @@
-let _covidDataRequest;
+let cov_req;
 
-/**
- * Lazy loader for COVID-19 data
- * @returns Promise for global COVID-19 data
- */
 export async function covidData() {
-  if (_covidDataRequest) return await _covidDataRequest;
+  if (cov_req) return await cov_req;
 
-  // Reduce CSV rows into object accessible by ISO code
-  _covidDataRequest = d3.csv('owid-covid-data.csv')
+  // Reduction of CSV rows into Objects
+  cov_req = d3.csv('owid-covid-data.csv')
     .then(data => data.reduce((pv, cv) => {
       const { iso_code } = cv;
 
@@ -20,7 +16,7 @@ export async function covidData() {
         };
       }
 
-      // CSV file values are all strings to be casted
+      // file values are all string to be casted
       const record = {
         date: new Date(cv.date),
       }
@@ -33,7 +29,7 @@ export async function covidData() {
       return pv;
     }, {}));
 
-  return _covidDataRequest;
+  return cov_req;
 }
 covidData.summaryStats = [
   'gdp_per_capita',
@@ -48,7 +44,7 @@ covidData.toPlotAgainst = [
   'people_fully_vaccinated',
   'total_deaths',
 ];
-// Others are suitable to plot, but not against (removing date from this)
+// removal of  date from this
 covidData.toPlot = covidData.toPlotAgainst.slice(1).concat([
   'new_cases',
   'new_cases_smoothed',
@@ -75,9 +71,7 @@ export async function geoData() {
 }
 
 /**
- * Extracts a numeric column value from a row object.
- * Since absent data is intentional, don't want to convert to a 0 by
- * accident
+ * Extracting  numeric column value from a row objects.
  * @param {*} row row object with column headings as properties
  * @param {*} col column heading to extract
  * @returns

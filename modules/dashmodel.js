@@ -18,16 +18,16 @@ const model = {
 const listeners = [];
 
 /**
- * Push an update to the data model.
+ * updating to the data model.
  * @param {object} changes object with new values for attributes
  */
 export function updateModel(changes) {
   const delta = {};
 
   for (const key in changes) {
-    // Only keys existing in the model can be updated
+    // keys existing in the model can only be udpated
     if (key in model) {
-      // Will only dispatch changed values to listeners
+      // dispatches changed value to listeners only
       if (model[key] != changes[key]) {
         model[key] = changes[key];
         delta[key] = changes[key];
@@ -43,7 +43,7 @@ export function updateModel(changes) {
 }
 
 /**
- * Register an event listener to run on updates to the data model.
+ * Registering an event listener to run on updates to the data model.
  * @param {function(string)} listener callback to run with new attribute value
  */
 export function addModelListener(listener) {

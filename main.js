@@ -1,8 +1,8 @@
 import { ClusterChart } from './modules/cluster_chart.js';
-import { covidData } from './modules/fetchers.js';
+import { covidData } from './modules/datafetch.js';
 import { LineChart } from './modules/line_chart.js';
 import { makeMap } from './modules/map.js';
-import { addModelListener, updateModel } from './modules/model.js';
+import { addModelListener, updateModel } from './modules/dashmodel.js';
 
 // Load covid data on page load so that it's ready ASAP
 covidData();

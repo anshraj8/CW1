@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>COVID-19</title>
+
+  <link rel="stylesheet" href="main_page.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+
+  <script src='https://d3js.org/d3.v7.min.js'></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <script src='main.js' type="module"></script>
+</head>
+
+<body>
+  <main>
+    <h1>COVID REPORT</h1>
+    <section id="map"></section>
+    <section id="instructions">
+      <h2>Important Information</h2>
+      <p>
+        To locate countries of interest, you can zoom in and out on the map.
+        The most recent figures for COVID-19 cases per million people in each nation are shown on the map as colours
+        and circles.
+        <br />
+        <br />
+        The line charts will be updated to reflect the data for the selected country when you click it on the map.
+       You can choose the property displayed on each line chart from the dropdown menus that are accessible, and you 
+       can also change the horizontal axis of all charts in a similar way.
+        <br />
+        <br />
+       To compare the impact of COVID-19 on a country's population with country summary statistics, 
+        scatter graphs are also available.
+        By clicking and dragging a box over them, points can be highlighted for comparison across 
+        the plots and coloured according to the results of the k-means clustering analysis.
+      </p>
+
+    </section>
+    <section id="line-charts">
+      <div id="toolbar">
+        <label id="charts-title">Loading...</label>
+        <button id="reset-selection">Clear selection</button>
+        <label>Horizontal axis:</label>
+        <select id="charts-select"></select>
+        <button id="reset-bounds">Reset zoom</button>
+      </div>
+    </section>
+    <section id="scatter-plots"></section>
+  </main>
+</body>
+
+</html>

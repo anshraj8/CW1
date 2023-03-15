@@ -1,4 +1,4 @@
-import { covidData, geoData } from "./fetchers.js";
+import { covidData, geoData } from "./datafetch.js";
 import { addModelListener, updateModel } from "./dashmodel.js";
 
 /**
@@ -120,7 +120,7 @@ export async function makeMap() {
         return (Math.round(number / 1000) * 1000).toLocaleString()
       }
 
-      // Construct a legend of coloured squares and the ranges they correspond to
+      // Constructing a legend of coloured squares and the ranges they correspond to
       const sel = d3.select(div);
       for (var i = 0; i < grades.length; i++) {
         sel.append('i')
